@@ -84,6 +84,9 @@ class Qualification:
     def getEnd(self):
         return self.end
 
+    def getLength(self):
+        return self.end - self.start
+
     def setInstitution(self, institution):
         assert isinstance(institution, str), 'object of wrong type!'
         self.institution = institution

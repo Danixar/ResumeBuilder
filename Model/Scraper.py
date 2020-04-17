@@ -1,4 +1,8 @@
-#make sure for macOS: Macintosh HD > Applications > Python3.7 -> "Install Certificates.command" is clocked
+#ResumeBuilder
+#Evangellos Wiegers
+#April 17, 2020
+
+#Note: make sure for macOS: Macintosh HD > Applications > Python3.7 -> "Install Certificates.command" is clocked
 
 import bs4
 from urllib.request import urlopen as uReq

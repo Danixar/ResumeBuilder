@@ -131,6 +131,24 @@ class Award:
         return self.year
 
 
+class AwardSection:
+
+    def __init__(self):
+        self.dict = {}
+
+    def add_section(self, name):
+        assert isinstance(name, str), 'name must be a unique string!'
+        assert name not in self.dict.keys(), 'section created already!'
+        self.dict[name] = []
+
+    def get_section(self):
+        return self.dict.keys()
+
+    def add_award(self, section, award):
+        assert section in self.dict.keys(), 'section not created yet!'
+        self.dict[section].append(award)
+
+
 class Qualification:
     '''
     Parent class for several different qualifications
@@ -148,6 +166,7 @@ class Qualification:
         assert isinstance(name, str), 'name of wrong type!'
         assert isinstance(start, int), 'start of wrong type!'
         assert isinstance(end, int), 'end of wrong type!'
+        assert end >= start, 'start date needs to be previous to end date'
         assert isinstance(institution, str), 'institution of wrong type!'
         assert isinstance(precedence, int), 'precedence of wrong type!'
         assert (10 >= precedence >= 1), 'precedence out of range!'
@@ -181,7 +200,11 @@ class Qualification:
         return self.end
 
     def get_length(self):
-        return self.end - self.start
+        assert self.end >= self.start, 'start date needs to be previous to end date'
+        if self.start == self.end:
+            return self.end
+        else:
+            return self.end + "-" + self.start
 
     def set_institution(self, institution):
         assert isinstance(institution, str), 'object of wrong type!'
@@ -345,14 +368,16 @@ class Other:
     '''
     Class for any other experience (i.e. volunteering)
     '''
-    def __init__(self, description):
+    def __init__(self, description, year=None):
         '''
         Constructor
         :param description: description of whatever this is
         '''
         assert isinstance(description, str), 'description of wrong type!'
+        assert isinstance(year, str or int or None), 'year of wrong type!'
 
         self.description = description
+        self.year = year
 
     def set_description(self, description):
         assert isinstance(description, str), 'description of wrong type!'
@@ -360,3 +385,10 @@ class Other:
 
     def get_description(self):
         return self.description
+
+    def set_year(self, year):
+        assert isinstance(year, str or int or None), 'year of wrong type!'
+        self.year = year
+
+    def get_year(self):
+        return self.year

@@ -2,24 +2,23 @@
 #Evangellos Wiegers
 #April 17, 2020
 
-from .Qualifications import Skill, SkillSection, Award, Education, Experience, Reference, Other
+from Support import Skill, SkillSection, Award, Education, Experience, Reference, Other, AwardSection
 
-def build(name, address, phone, email, educationList, skillSections, experience,  references=None, awards=None, volunteering=None, hobbies=None):
-    '''
-    Function to
-    :param name:
-    :param address:
-    :param phone:
-    :param email:
-    :param educationList:
-    :param skillSections:
-    :param experience:
-    :param references:
-    :param awards:
-    :param volunteering:
-    :param hobbies:
-    :return:
-    '''
+def organize(keywords, education_list, number_educations, skill_section, number_skills, experiences, number_exp,
+             references, number_ref, award_section, number_award, volunteering, number_vol, hobbies, number_hobbies):
+
+
+
+    return
+
+
+
+
+
+
+
+def build(name, address, phone, email, education_list, skill_sections, experiences,  references=None, award_section=None, volunteering=None, hobbies=None):
+
 
 
     return

@@ -5,9 +5,20 @@
 
 class Skill:
     '''
-
+    Class for a person's skills (i.e. python, java, linux, etc)
     '''
     def __init__(self, keywords, description, precedence):
+        '''
+        Constructor
+        :param keywords: a list of strings (words) found on a resume that would relate to the given skill
+        :param description: string describing the skill (i.e. utilized python to build a ResumeBuilder script)
+        :param precedence: int precedence from 1-10 of how important this skill is relative to the others
+        '''
+        assert isinstance(keywords, list), 'keywords not a list!'
+        assert isinstance(description, str), 'description of wrong type!'
+        assert isinstance(precedence, int), 'precedence of wrong type!'
+        assert (10 >= precedence >= 1), 'precedence out of range!'
+
         self.keywords = keywords
         self.description = description
         self.precedence = precedence
@@ -16,6 +27,10 @@ class Skill:
         for obj in keywords:
             assert isinstance(obj, str), 'object of wrong type!'
         self.keywords = [x for x in keywords if x]
+
+    def add_keyword(self, word):
+        assert isinstance(word, str), 'object of wrong type!'
+        self.keywords.append(word)
 
     def get_keywords(self):
         return self.keywords
@@ -37,8 +52,13 @@ class Skill:
 
 
 class SkillSection:
-
+    '''
+    Class to contain the various sections of skills
+    '''
     def __init__(self):
+        '''
+        Constructor
+        '''
         self.dict = {"Languages and Proficiencies": [], "Technical and Design": [],
                      "Interpersonal": [], "Other": []}
 
@@ -83,8 +103,18 @@ class SkillSection:
 
 
 class Award:
-
+    '''
+    Class for awards won by the user
+    '''
     def __init__(self, name, year):
+        '''
+        Constructor
+        :param name: string name of the award
+        :param year: string or int year awarded
+        '''
+        assert isinstance(name, str), 'name of wrong type!'
+        assert isinstance(year, str or int), 'year of wrong type!'
+
         self.name = name
         self.year = year
 
@@ -102,8 +132,26 @@ class Award:
 
 
 class Qualification:
-
+    '''
+    Parent class for several different qualifications
+    '''
     def __init__(self, name, start, end, institution, location, precedence):
+        '''
+        Constructor
+        :param name: string name of qualification
+        :param start: int start year
+        :param end:  int end year
+        :param institution: string institution qualification is derived from
+        :param location: string city/town qualification came from
+        :param precedence: int precedence from 1-10 of how important this qualification is relative to the others
+        '''
+        assert isinstance(name, str), 'name of wrong type!'
+        assert isinstance(start, int), 'start of wrong type!'
+        assert isinstance(end, int), 'end of wrong type!'
+        assert isinstance(institution, str), 'institution of wrong type!'
+        assert isinstance(precedence, int), 'precedence of wrong type!'
+        assert (10 >= precedence >= 1), 'precedence out of range!'
+
         self.name = name
         self.start = start
         self.end = end
@@ -159,8 +207,32 @@ class Qualification:
 
 
 class Education(Qualification):
-
+    '''
+    Class for an educational experience
+    '''
     def __init__(self, name, start, end, institution, location, precedence, is_finished, grade, degree_title):
+        '''
+        Constructor
+        :param name: string name of qualification
+        :param start: int start year
+        :param end:  int end year
+        :param institution: string institution qualification is derived from
+        :param location: string city/town qualification came from
+        :param precedence: int precedence from 1-10 of how important this qualification is relative to the others
+        :param is_finished: boolean if education is completed or not
+        :param grade: up-to date grade
+        :param degree_title: official title (i.e. B.Sc. )
+        '''
+        assert isinstance(name, str), 'name of wrong type!'
+        assert isinstance(start, int), 'start of wrong type!'
+        assert isinstance(end, int), 'end of wrong type!'
+        assert isinstance(institution, str), 'institution of wrong type!'
+        assert isinstance(precedence, int), 'precedence of wrong type!'
+        assert (10 >= precedence >= 1), 'precedence out of range!'
+        assert isinstance(is_finished, bool), 'is_finished of wrong type!'
+        assert isinstance(grade, int or float), 'grade of wrong type!'
+        assert isinstance(degree_title, str), 'degree_title of wrong type!'
+
         super(Education, self).__init__(name, start, end, institution, location, precedence)
         self.isFinished = is_finished
         self.grade = grade
@@ -192,8 +264,28 @@ class Education(Qualification):
 
 
 class Experience(Qualification):
-
+    '''
+    Class for non-educational experience (i.e. work)
+    '''
     def __init__(self, name, start, end, institution, location, precedence, description):
+        '''
+        Constructor
+        :param name: string name of qualification
+        :param start: int start year
+        :param end:  int end year
+        :param institution: string institution qualification is derived from
+        :param location: string city/town qualification came from
+        :param precedence: int precedence from 1-10 of how important this qualification is relative to the others
+        :param description: brief description of what the user did in this experience
+        '''
+        assert isinstance(name, str), 'name of wrong type!'
+        assert isinstance(start, int), 'start of wrong type!'
+        assert isinstance(end, int), 'end of wrong type!'
+        assert isinstance(institution, str), 'institution of wrong type!'
+        assert isinstance(precedence, int), 'precedence of wrong type!'
+        assert (10 >= precedence >= 1), 'precedence out of range!'
+        assert isinstance(description, str), 'description of wrong type!'
+
         super(Experience, self).__init__(name, start, end, institution, location, precedence)
         self.description = description
 
@@ -206,19 +298,43 @@ class Experience(Qualification):
 
 
 class Reference(Qualification):
-
+    '''
+    Class for resume reference
+    '''
     def __init__(self, name, start, end, institution, location, precedence, email, phone):
+        '''
+        Constructor
+        :param name: string name of qualification
+        :param start: int start year
+        :param end:  int end year
+        :param institution: string institution qualification is derived from
+        :param location: string city/town qualification came from
+        :param precedence: int precedence from 1-10 of how important this qualification is relative to the others
+        :param email: string reference email
+        :param phone: string phone number
+        '''
+        assert isinstance(name, str), 'name of wrong type!'
+        assert isinstance(start, int), 'start of wrong type!'
+        assert isinstance(end, int), 'end of wrong type!'
+        assert isinstance(institution, str), 'institution of wrong type!'
+        assert isinstance(precedence, int), 'precedence of wrong type!'
+        assert (10 >= precedence >= 1), 'precedence out of range!'
+        assert isinstance(email, str), 'email of wrong type!'
+        assert isinstance(phone, str), 'phone of wrong type!'
+
         super(Reference, self).__init__(name, start, end, institution, location, precedence)
         self.email = email
         self.phone = phone
 
     def set_email(self, email):
+        assert isinstance(email, str), 'email of wrong type!'
         self.email = email
 
     def get_email(self):
         return self.email
 
     def set_phone(self, phone):
+        assert isinstance(phone, str), 'phone of wrong type!'
         self.phone = phone
 
     def get_phone(self):
@@ -226,11 +342,20 @@ class Reference(Qualification):
 
 
 class Other:
-
+    '''
+    Class for any other experience (i.e. volunteering)
+    '''
     def __init__(self, description):
+        '''
+        Constructor
+        :param description: description of whatever this is
+        '''
+        assert isinstance(description, str), 'description of wrong type!'
+
         self.description = description
 
     def set_description(self, description):
+        assert isinstance(description, str), 'description of wrong type!'
         self.description = description
 
     def get_description(self):

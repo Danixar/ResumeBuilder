@@ -9,6 +9,12 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as bsoup
 
 def scrape(myURL):
+    '''
+    Function fo scrape a url of a job posting for any relevant keywords
+    :param myURL: the string URL of the webpage of the  job posting
+    :return: a list of string keywords scraped from the webpage of the url
+    '''
+
     #opening connection to page of url
     uClient = uReq(myURL)
     #opening html file from connected url

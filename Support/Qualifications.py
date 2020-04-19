@@ -116,16 +116,18 @@ class Award:
         assert isinstance(year, str or int), 'year of wrong type!'
 
         self.name = name
-        self.year = year
+        self.year = str(year)
 
     def set_name(self, name):
+        assert isinstance(name, str), 'name of wrong type!'
         self.name = name
 
     def get_name(self):
         return self.name
 
     def set_year(self, year):
-        self.year = year
+        assert isinstance(year, str or int), 'year of wrong type!'
+        self.year = str(year)
 
     def get_year(self):
         return self.year
@@ -391,4 +393,4 @@ class Other:
         self.year = year
 
     def get_year(self):
-        return self.year
+        return str(self.year)

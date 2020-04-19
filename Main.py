@@ -3,7 +3,7 @@
 #April 17, 2020
 
 from .Support import Skill, SkillSection, Award, AwardSection, Education, \
-    Experience, Reference, Other, scrape, build, organize
+    Experience, Reference, Other, scrape, build
 
 ########################################################################################################################
 # This is the main file which contains the script for the Resume Builder
@@ -22,7 +22,7 @@ from .Support import Skill, SkillSection, Award, AwardSection, Education, \
 # See the Support package for information on the classes used and their required parameters
 # Edit the below info accordingly to fit yourself
 name = "Evan Wiegers"
-address = "3208 Thames Crescent"
+address = "3208 Thames Crescent, Regina, SK"
 phone = "(306) 540 - 7573"
 email = "evan.wiegers@usask.ca"
 
@@ -75,7 +75,7 @@ colliers_work = Experience("Business Analyst Intern", 2019, 2019, "Colliers Inte
 holdings_work = Experience("Business Analyst Intern", 2017, 2017, "Kouros Holdings Ltd", 6,
                            "Regina, SK", "Created spreadsheets to report and assess current financial balances "
                             "and forecast revenues and expenditures")
-experiences = [colliers_work, holdings_work]
+experience_list = [colliers_work, holdings_work]
 
 # Adding the info for the Awards sections
 award10 = Award("Society of Chemical Industry, Canadian Section Merit Award", 2018)
@@ -89,21 +89,7 @@ award3 = Award("Golden Key International Honour Society", 2016)
 award2 = Award("R.L Eager Book Prize in Physical Chemistry", "2015-2016")
 award1 = Award("Teruo Natori Scholarship Fund", 2016)
 
-    # NOTE: you could just create a list for the award section like in the skill_section i.e.
-    # award_section = [award10, award9, award8, ...]
-    # instead we are using the AwardSection class to differentiate awards
-award_section = AwardSection()
-award_section.add_section("Engineering") # for awards won in engineering
-award_section.add_award("Engineering", award10) # add in descending order of importance
-award_section.add_award("Engineering", award9)
-award_section.add_award("Engineering", award8)
-award_section.add_award("Engineering", award7)
-award_section.add_award("Engineering", award6)
-award_section.add_award("Engineering", award5)
-award_section.add_award("Engineering", award4)
-award_section.add_award("Engineering", award3)
-award_section.add_award("Engineering", award2)
-award_section.add_award("Engineering", award1)
+award_section = [award10, award1, award2, award3, award4, award5, award6, award7, award8, award9]
 
 # Adding the info for the References section
 references = "Available upon request"
@@ -125,7 +111,7 @@ hobbies = [] # I dont use these for resumes
 # Add the number of objects of a given section
 # you desire - i.e. 5 skills
 number_educations = 2
-number_skills = 8
+number_skills = [1, 4, 3, 0] # list if using SkillSection class i.e. 1 Language skill, 4 technical skills, etc
 number_exp = 2
 number_ref = 2
 number_award = 8
@@ -144,12 +130,9 @@ if __name__ == '__main___':
         keywords = scrape(myURL)
 
     # see builder.py to better understand this function
-    # this function organizes your resume info based on the scraped keywords
-    organize(keywords, education_list, number_educations, skill_section, number_skills, experiences,
-             number_exp, references, number_ref, award_section, number_award, volunteering, number_vol, hobbies,
-             number_hobbies)
-
-    build(name, address, phone, email, education_list, skill_section,
-          experiences,  references, award_section, volunteering, hobbies)
+    # this function organizes and builds your resume info based on the scraped keywords
+    build(name, address, phone, email, keywords, education_list, number_educations, skill_section, number_skills,
+          experience_list, number_exp, references, number_ref, award_section, number_award, volunteering, number_vol,
+          hobbies, number_hobbies)
 
 ########################################################################################################################

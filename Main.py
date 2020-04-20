@@ -22,9 +22,10 @@ from .Support import Skill, SkillSection, Award, AwardSection, Education, \
 # See the Support package for information on the classes used and their required parameters
 # Edit the below info accordingly to fit yourself
 name = "Evan Wiegers"
-address = "3208 Thames Crescent, Regina, SK"
+address = "1132 College Dr, Saskatoon, SK, S7N 0W2"
 phone = "(306) 540 - 7573"
 email = "evan.wiegers@usask.ca"
+github_account = "github.com/Danixar"
 
 # Adding the info for the Education section
 second_degree = Education("Computer Science", 2019, 2021, "University of Saskatchewan",
@@ -123,16 +124,20 @@ number_hobbies = 0
 
 if __name__ == '__main___':
     #entering the URL of the job posting or none elsewise
-    myURL = input("Enter the URL of the job posting: ")
-    if myURL.lower().strip() == "none":
-        keywords = None
-    else:
-        keywords = scrape(myURL)
+    # posting = input("Enter the name of the job posting: ")
+    # myURL = input("Enter the URL of the job posting: ")
+    # if myURL.lower().strip() == "none":
+    #     keywords = None
+    # else:
+    #     keywords = scrape(myURL)
+
+    posting = "bigtest"
+    keywords = ["python", "git", "communication", "kill", "me"]
 
     # see builder.py to better understand this function
     # this function organizes and builds your resume info based on the scraped keywords
-    build(name, address, phone, email, keywords, education_list, number_educations, skill_section, number_skills,
-          experience_list, number_exp, references, number_ref, award_section, number_award, volunteering, number_vol,
-          hobbies, number_hobbies)
+    build(posting, name, address, phone, email, github_account, keywords, education_list, number_educations, skill_section,
+          number_skills, experience_list, number_exp, references, number_ref, award_section, number_award,
+          volunteering, number_vol, hobbies, number_hobbies)
 
 ########################################################################################################################

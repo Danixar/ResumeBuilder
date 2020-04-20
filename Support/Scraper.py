@@ -44,7 +44,7 @@ def scrape(myURL):
 
 
 #Main testing
-if __name__ == "__main__":
+if __name__ == '__main__':
     #Getting url from user
     myURL = input("Enter the URL of the job posting: ")
     print(scrape(myURL))

@@ -166,16 +166,15 @@ class Qualification:
         :param precedence: int precedence from 1-10 of how important this qualification is relative to the others
         '''
         assert isinstance(name, str), 'name of wrong type!'
-        assert isinstance(start, int), 'start of wrong type!'
-        assert isinstance(end, int), 'end of wrong type!'
-        assert end >= start, 'start date needs to be previous to end date'
+        assert isinstance(start, str or int), 'start of wrong type!'
+        assert isinstance(end, str or int), 'end of wrong type!'
         assert isinstance(institution, str), 'institution of wrong type!'
         assert isinstance(precedence, int), 'precedence of wrong type!'
         assert (10 >= precedence >= 1), 'precedence out of range!'
 
         self.name = name
-        self.start = start
-        self.end = end
+        self.start = str(start)
+        self.end = str(end)
         self.institution = institution
         self.location = location
         self.precedence = precedence
@@ -188,25 +187,24 @@ class Qualification:
         return self.name
 
     def set_start(self, start):
-        assert isinstance(start, int), 'object of wrong type!'
-        self.start = start
+        assert isinstance(start, str or int), 'object of wrong type!'
+        self.start = str(start)
 
     def get_start(self):
         return self.start
 
     def set_end(self, end):
-        assert isinstance(end, int), 'object of wrong type!'
-        self.end = end
+        assert isinstance(end, str or int), 'object of wrong type!'
+        self.end = str(end)
 
     def get_end(self):
         return self.end
 
     def get_length(self):
-        assert self.end >= self.start, 'start date needs to be previous to end date'
         if self.start == self.end:
-            return self.end
+            return str(self.end)
         else:
-            return self.end + "-" + self.start
+            return str(self.end) + "-" + str(self.start)
 
     def set_institution(self, institution):
         assert isinstance(institution, str), 'object of wrong type!'
@@ -255,37 +253,37 @@ class Education(Qualification):
         assert isinstance(precedence, int), 'precedence of wrong type!'
         assert (10 >= precedence >= 1), 'precedence out of range!'
         assert isinstance(is_finished, bool), 'is_finished of wrong type!'
-        assert isinstance(grade, int or float), 'grade of wrong type!'
+        assert isinstance(grade, int or float or str), 'grade of wrong type!'
         assert isinstance(degree_title, str), 'degree_title of wrong type!'
 
         super(Education, self).__init__(name, start, end, institution, location, precedence)
         self.isFinished = is_finished
-        self.grade = grade
-        self.degreeTitle = degree_title
+        self.grade = str(grade)
+        self.degree_title = degree_title
 
     def set_is_finished(self, is_finished):
         assert isinstance(is_finished, bool), 'object of wrong type!'
         self.isFinished = is_finished
 
-    def get_us_finished(self):
+    def get_is_finished(self):
         return self.isFinished
 
     def set_grade(self, grade):
-        assert isinstance(grade, int or float), 'object of wrong type!'
+        assert isinstance(grade, int or float or str), 'object of wrong type!'
         float_grade = grade
         if isinstance(float_grade, int):
             float_grade = float(float_grade)
-        self.grade = float_grade
+        self.grade = str(float_grade)
 
     def get_grade(self):
         return self.grade
 
     def set_degree_title(self, degree_title):
         assert isinstance(degree_title, str), 'object of wrong type!'
-        self.degreeTitle = degree_title
+        self.degree_title = degree_title
 
     def get_degree_title(self):
-        return self.degreeTitle
+        return self.degree_title
 
 
 class Experience(Qualification):
@@ -326,7 +324,7 @@ class Reference(Qualification):
     '''
     Class for resume reference
     '''
-    def __init__(self, name, start, end, institution, location, precedence, email, phone):
+    def __init__(self, name, start, end, institution, location, precedence, title, email, phone):
         '''
         Constructor
         :param name: string name of qualification
@@ -344,12 +342,21 @@ class Reference(Qualification):
         assert isinstance(institution, str), 'institution of wrong type!'
         assert isinstance(precedence, int), 'precedence of wrong type!'
         assert (10 >= precedence >= 1), 'precedence out of range!'
+        assert isinstance(title, str), 'email of wrong type!'
         assert isinstance(email, str), 'email of wrong type!'
         assert isinstance(phone, str), 'phone of wrong type!'
 
         super(Reference, self).__init__(name, start, end, institution, location, precedence)
+        self.title = title
         self.email = email
         self.phone = phone
+
+    def set_title(self, title):
+        assert isinstance(title, str), 'email of wrong type!'
+        self.title = title
+
+    def get_title(self):
+        return self.title
 
     def set_email(self, email):
         assert isinstance(email, str), 'email of wrong type!'
@@ -379,7 +386,7 @@ class Other:
         assert isinstance(year, str or int or None), 'year of wrong type!'
 
         self.description = description
-        self.year = year
+        self.year = str(year)
 
     def set_description(self, description):
         assert isinstance(description, str), 'description of wrong type!'
@@ -390,7 +397,7 @@ class Other:
 
     def set_year(self, year):
         assert isinstance(year, str or int or None), 'year of wrong type!'
-        self.year = year
+        self.year = str(year)
 
     def get_year(self):
         return str(self.year)

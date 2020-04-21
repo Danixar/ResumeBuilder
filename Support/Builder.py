@@ -2,7 +2,7 @@
 #Evangellos Wiegers
 #April 17, 2020
 
-from Support import Skill, SkillSection, Award, Education, Experience, Reference, Other, AwardSection
+from Support import Skill, SkillSection, Award, Education, Experience, Reference, Other, Qualification
 from pathlib import Path
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, PageBreak)
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -10,6 +10,26 @@ from reportlab.lib.pagesizes import LETTER
 from reportlab.platypus import HRFlowable
 from reportlab.lib.colors import gray, lightgrey, black
 import shutil
+
+def object_precedence(obj):
+    '''
+    Function to use precedence for the sort() key
+     :param obj: object we want to get the precedence of
+    :return: precedence of object
+    '''
+    assert isinstance(obj, Skill) or isinstance(obj, Qualification), 'Object of wrong type!'
+    return obj.get_precedence()
+
+
+def object_year(obj):
+    '''
+    Function to use year for the sort() key
+    :param obj: object we want to get the year of
+    :return: the object's year as a string in reverse (easier to use sort() in this case)
+    '''
+    assert isinstance(obj, Award) or isinstance(obj, Other), 'Object of wrong type!'
+    return obj.get_year()[::-1]
+
 
 def build(posting, name, address, phone, email, github_account, keywords, education_list, number_educations,
           skill_section, number_skills, experience_list, number_exp, references, number_ref, award_section,
@@ -55,75 +75,79 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
             all_skills = SkillSection()
             # language skills
             count = 0
-            skill_section["Languages and Proficiencies"].sort(reverse=True, key= Skill.get_precedence())
-            for skill in skill_section.get_language():
+            section = skill_section.get_language()
+            section.sort(key=object_precedence, reverse=True)
+            for skill in section:
                 if count >= number_skills[0]:
                     break
                 elif len([i for i in skill.get_keywords() if i in keywords]) > 0:
                     all_skills.add_language(skill)
                     count += 1
             if count < number_skills[0]:
-                for skill in skill_section.get_language():
+                for skill in section:
                     if count >= number_skills[0]:
                         break
-                    elif skill not in all_skills:
+                    elif skill not in all_skills.get_language():
                         all_skills.add_language(skill)
                         count += 1
 
             # technical skills
             count = 0
-            skill_section["Technical and Design"].sort(reverse=True, key= Skill.get_precedence())
-            for skill in skill_section.get_technical():
+            section = skill_section.get_technical()
+            section.sort(key=object_precedence, reverse=True)
+            for skill in section:
                 if count >= number_skills[1]:
                     break
                 elif len([i for i in skill.get_keywords() if i in keywords]) > 0:
                     all_skills.add_technical(skill)
                     count += 1
             if count < number_skills[1]:
-                for skill in skill_section.get_technical():
+                for skill in section:
                     if count >= number_skills[1]:
                         break
-                    elif skill not in all_skills:
+                    elif skill not in all_skills.get_technical():
                         all_skills.add_technical(skill)
                         count += 1
 
             # interpersonal skills
             count = 0
-            skill_section["Interpersonal"].sort(reverse=True, key= Skill.get_precedence())
-            for skill in skill_section.get_interpersonal():
+            section = skill_section.get_interpersonal()
+            section.sort(key=object_precedence, reverse=True)
+            for skill in section:
                 if count >= number_skills[2]:
                     break
                 elif len([i for i in skill.get_keywords() if i in keywords]) > 0:
                     all_skills.add_interpersonal(skill)
                     count += 1
             if count < number_skills[2]:
-                for skill in skill_section.get_interpersonal():
+                for skill in section:
                     if count >= number_skills[2]:
                         break
-                    elif skill not in all_skills:
+                    elif skill not in all_skills.get_interpersonal():
                         all_skills.add_interpersonal(skill)
                         count += 1
 
             # other skills
             count = 0
-            skill_section["Other"].sort(reverse=True, key= Skill.get_precedence())
-            for skill in skill_section.get_other():
+            section = skill_section.get_other()
+            section.sort(key=object_precedence, reverse=True)
+            for skill in section:
                 if count >= number_skills[3]:
                     break
                 elif len([i for i in skill.get_keywords() if i in keywords]) > 0:
                     all_skills.add_other(skill)
                     count += 1
             if count < number_skills[3]:
-                for skill in skill_section.get_other():
+                for skill in section:
                     if count >= number_skills[3]:
                         break
-                    elif skill not in all_skills:
+                    elif skill not in all_skills.get_other():
                         all_skills.add_other(skill)
                         count += 1
 
         elif isinstance(skill_section, list):
             assert isinstance(number_skills, int), 'number_skills must be int for skill_section type list'
-            skill_section.sort(reverse=True, key= Skill.get_precedence())
+            skill_section.sort(reverse=True, key=object_precedence())
             all_skills = []
             count = 0
             for skill in skill_section:
@@ -145,7 +169,7 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
     count = 0
     if isinstance(education_list, list):
         all_education = []
-        education_list.sort(reverse=True, key=Education.get_precedence())
+        education_list.sort(key=object_precedence, reverse=True)
         for educ in education_list:
             if count < number_educations:
                 all_education.append(educ)
@@ -158,7 +182,7 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
     count = 0
     if isinstance(experience_list, list):
         all_experiences = []
-        experience_list.sort(reverse=True, key=Experience.get_precedence())
+        experience_list.sort(key=object_precedence, reverse=True)
         for exp in experience_list:
             if count < number_exp:
                 all_experiences.append(exp)
@@ -171,7 +195,7 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
     count = 0
     if isinstance(references, list):
         all_references = []
-        references.sort(reverse=True, key=Reference.get_precedence())
+        references.sort(key=object_precedence, reverse=True)
         for ref in references:
             if count < number_ref:
                 all_references.append(ref)
@@ -184,7 +208,7 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
     count = 0
     if isinstance(award_section, list):
         all_awards = []
-        award_section.sort(reverse=True, key=Award.get_year())
+        award_section.sort(key=object_year, reverse=True)
         for award in award_section:
             if count < number_award:
                 all_awards.append(award)
@@ -197,7 +221,7 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
     count = 0
     if isinstance(volunteering, list):
         all_volunteering = []
-        volunteering.sort(reverse=True, key=Other.get_year())
+        volunteering.sort(key=object_year, reverse=True)
         for vol in volunteering:
             if count < number_vol:
                 all_volunteering.append(vol)
@@ -210,7 +234,7 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
     count = 0
     if isinstance(hobbies, list):
         all_hobbies = []
-        hobbies.sort(reverse=True, key=Other.get_year()[::-1])
+        hobbies.sort(key=object_year, reverse=True)
         for hobby in hobbies:
             if count < number_hobbies:
                 all_hobbies.append(hobby)
@@ -225,83 +249,86 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
     # creating filename
     file_name = posting + ".pdf"
     count = 0
-    my_file = Path("../" + file_name)
+    my_file = Path("./Resumes/" + file_name)
     check = False
     # getting a new file name in case of repeats
-    while check:
+    while not check:
         if my_file.is_file():
             count += 1
             file_name = posting + "(" + str(count) + ").pdf"
-            my_file = Path("./" + file_name)
+            my_file = Path("./Resumes/" + file_name)
         else:
             check = True
 
     #c reating PDF document
-    doc = SimpleDocTemplate(file_name, pagesize=LETTER)
+    doc = SimpleDocTemplate(file_name, pagesize=LETTER, bottomMargin=66.0,
+                            topMargin=66.0, leftMargin=66.0, rightMargin=66.0)
     elements = []
 
     #creating styles
-    name_style = ParagraphStyle(name='Normal', fontname='Times-Bold', fontSize=22, alignment=1)
-    info_style = ParagraphStyle(name='Normal', fontname='Times-Roman', fontSize=14, alignment=1)
-    info_style2 = ParagraphStyle(name='Normal', fontname='Times-Roman', fontSize=14)
-    section_style = ParagraphStyle(name='Normal', fontname='Times-Bold', fontSize=18, spaceBefore=6)
-    title_style = ParagraphStyle(name='Normal', fontname='Times-Bold', fontSize=14)
-    normal_style = ParagraphStyle(name='Normal', fontname='Times-Roman', fontSize=12)
-    horizontal_line = HRFlowable(width="100%", thickness=2, lineCap='round', color=black, spaceBefore=3,
-                               spaceAfter=6, hAlign='CENTER', vAlign='BOTTOM', dash=None)
+    name_style = ParagraphStyle(name='Normal', fontName='Times-Bold', fontSize=22, spaceAfter=6, alignment=1, leading=24)
+    info_style = ParagraphStyle(name='Normal', fontName='Times-Roman', fontSize=14, spaceAfter=6, alignment=1)
+    indent_style = ParagraphStyle(name='Normal', fontName='Times-Roman', fontSize=14, leftIndent=36, spaceAfter=6, spaceBefore=6)
+    section_style = ParagraphStyle(name='Normal', fontName='Times-Bold', fontSize=18, spaceBefore=6, leading=24)
+    title_style = ParagraphStyle(name='Normal', fontName='Times-Bold', fontSize=14, leading=12)
+    normal_style = ParagraphStyle(name='Normal', fontName='Times-Roman', fontSize=12, leading=24)
+    bullet_style = ParagraphStyle(name='Normal', fontName='Times-Roman', fontSize=12, leading=12, bulletFontName="Times-Bold", bulletFontSize=10, leftIndent=35)
+    horizontal_line = HRFlowable(width="100%", thickness=2, lineCap='square', color=black, spaceBefore=3,
+                               spaceAfter=18, hAlign='CENTER', vAlign='BOTTOM', dash=None)
 
     # add the contact info section to PDF
     elements.append(Paragraph(name, name_style))
-    elements.append(Paragraph(address, info_style))
-    elements.append(Paragraph(phone + " | " + email, info_style + " | " + github_account, info_style))
+    elements.append(Paragraph(email + " | " + github_account, info_style))
+    elements.append(Paragraph(phone + " | " + address, info_style))
     elements.append(horizontal_line)
 
     # add education section to PDF
-    if all_education != None:
+    if all_education != (None or []):
         elements.append(Paragraph("EDUCATION", section_style))
         elements.append(horizontal_line)
         if isinstance(all_education, list):
             for educ in all_education:
-                elements.append(Paragraph(educ.get_name() + " | " + educ.get_institution, title_style))
-                descript = "      " + educ.get_degree_title + " | " + educ.get_grade + " | "+ educ.get_length()
+                elements.append(Paragraph(educ.get_name() + " | " + educ.get_institution(), title_style))
+                descript = "      " + educ.get_degree_title() + " | " + educ.get_grade() + " | "+ educ.get_length()
                 if not educ.get_is_finished():
                     descript += " (Expected)"
-                elements.append(Paragraph(descript, info_style2))
+                elements.append(Paragraph(descript, indent_style))
         elif isinstance(all_education, str):
-            elements.append(Paragraph(all_education, info_style2))
+            elements.append(Paragraph(all_education, indent_style))
 
     # add skill section to PDF
-    if all_skills != None:
+    if all_skills != (None or []):
         elements.append(Paragraph("RELEVENT SKILLS", section_style))
         elements.append(horizontal_line)
         if isinstance(all_skills, SkillSection):
-            if all_skills.get_language() != None:
+            if all_skills.get_language() != (None or []):
                 elements.append(Paragraph("Languages and Proficiencies", title_style))
                 for skill in all_skills.get_language():
-                    elements.append(Paragraph("<bullet>" + skill.get_description() + "</bullet>", normal_style))
-            if all_skills.get_technical() != None:
+                    elements.append(Paragraph(skill.get_description(), bullet_style))
+            if all_skills.get_technical() != (None or []):
                 elements.append(Paragraph("Technical and Design", title_style))
                 for skill in all_skills.get_technical():
-                    elements.append(Paragraph("<bullet>" + skill.get_description() + "</bullet>", normal_style))
-            if all_skills.get_interpersonal() != None:
+                    elements.append(Paragraph(skill.get_description(), bullet_style))
+            if all_skills.get_interpersonal() != (None or []):
                 elements.append(Paragraph("Interpersonal", title_style))
                 for skill in all_skills.get_interpersonal():
-                    elements.append(Paragraph("<bullet>" + skill.get_description() + "</bullet>", normal_style))
-            if all_skills.get_other() != None:
+                    elements.append(Paragraph(skill.get_description(), bullet_style))
+            if all_skills.get_other() != (None or []):
                 elements.append(Paragraph("Other", title_style))
                 for skill in all_skills.get_other():
-                    elements.append(Paragraph("<bullet>" + skill.get_description() + "</bullet>", normal_style))
+                    elements.append(Paragraph(skill.get_description(), bullet_style))
         elif isinstance(all_skills, list):
             for skill in all_skills:
-                elements.append(Paragraph("<bullet>" + skill.get_description() + "</bullet>", normal_style))
+                elements.append(Paragraph(skill.get_description(), bullet_style))
         elif isinstance(all_skills, str):
             elements.append(Paragraph(all_skills, normal_style))
 
     # new page
     elements.append(PageBreak())
+    header = "Evan Wiegers (306) 540-7573 /2"
 
     # add experience section
-    if all_experiences != None:
+    if all_experiences != (None or []):
         elements.append(Paragraph("RECENT EXPERIENCE", section_style))
         elements.append(horizontal_line)
         if isinstance(all_experiences, list):
@@ -309,42 +336,42 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
                 elements.append(Paragraph(exp.get_name() +
                                           "                            " + exp.get_length(), title_style))
                 elements.append(Paragraph(exp.get_institution() + ", " + exp.get_location(), normal_style))
-                elements.append(Paragraph("<bullet>" + exp.get_description() + "</bullet>", normal_style))
+                elements.append(Paragraph( exp.get_description(), bullet_style))
         elif isinstance(all_experiences, str):
             elements.append(Paragraph(all_experiences, normal_style))
 
     # add awards section
-    if all_awards != None:
+    if all_awards != (None or []):
         elements.append(Paragraph("ACADEMIC HONOURS", section_style))
         elements.append(horizontal_line)
         if isinstance(all_awards, list):
             for award in all_awards:
-                elements.append(Paragraph( "<bullet>" + award.get_name() + ", "
-                                           + award.get_year() + "</bullet>", normal_style))
+                elements.append(Paragraph(award.get_name() + ", "
+                                           + award.get_year(), bullet_style))
         elif isinstance(all_awards, str):
             elements.append(Paragraph(all_awards, normal_style))
 
     # add volunteering section
-    if all_volunteering != None:
+    if all_volunteering != (None or []):
         elements.append(Paragraph("VOLUNTEERING", section_style))
         elements.append(horizontal_line)
         if isinstance(all_volunteering, list):
             for vol in all_volunteering:
-                elements.append(Paragraph("<bullet>" + vol.get_name() + ", " + vol.get_year() + "</bullet>", normal_style))
+                elements.append(Paragraph(vol.get_description() + ", " + vol.get_year(), bullet_style))
         elif isinstance(all_volunteering, str):
             elements.append(Paragraph(all_volunteering, normal_style))
 
     # add hobby section
-    if all_hobbies != None:
+    if all_hobbies != (None or []):
         elements.append(Paragraph("HOBBIES", section_style))
         elements.append(horizontal_line)
         if isinstance(all_hobbies, list):
-            elements.append(Paragraph("<bullet>" + ', '.join(all_hobbies) + "</bullet>", normal_style))
+            elements.append(Paragraph(', '.join(all_hobbies), bullet_style))
         elif isinstance(all_hobbies, str):
             elements.append(Paragraph(all_hobbies, normal_style))
 
     # add reference section
-    if all_references != None:
+    if all_references != (None or []):
         elements.append(Paragraph("REFERENCES", section_style))
         elements.append(horizontal_line)
         if isinstance(all_references, list):
@@ -357,6 +384,6 @@ def build(posting, name, address, phone, email, github_account, keywords, educat
 
     # building PDF and moving it to appropriate directory
     doc.build(elements)
-    shutil.move(file_name, "..")
+    shutil.move(file_name, "./Resumes")
 
     return

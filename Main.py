@@ -22,16 +22,16 @@ from Support import Skill, SkillSection, Award, AwardSection, Education, \
 # See the Support package for information on the classes used and their required parameters
 # Edit the below info accordingly to fit yourself
 name = "Evan Wiegers"
-address = "1132 College Dr, Saskatoon, SK, S7N 0W2"
+address = "1132 College Dr, Saskatoon, SK"
 phone = "(306) 540 - 7573"
 email = "evan.wiegers@usask.ca"
 github_account = "github.com/Danixar"
 
 # Adding the info for the Education section
 second_degree = Education("Computer Science", 2019, 2021, "University of Saskatchewan",
-                  "Saskatoon, SK", 10, False, 93, "B.Sc.")
+                  "Saskatoon, SK", 10, False, "93% average", "B.Sc. Four Year")
 first_degree = Education("Chemical Engineering", 2014, 2018, "University of Saskatchewan",
-                  "Saskatoon, SK", 9, True, 90, "B.E.")
+                  "Saskatoon, SK", 9, True, "90% average", "B.E. with Great Distinction")
 education_list = [second_degree, first_degree]
 
 # Adding the info for the Skill Section

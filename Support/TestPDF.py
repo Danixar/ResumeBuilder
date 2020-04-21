@@ -46,4 +46,4 @@ if __name__ == '__main__':
     doc.build(elements)
 
 
-    shutil.move(file_name, "..")
+    shutil.move(file_name, "../Resumes")

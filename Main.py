@@ -2,7 +2,7 @@
 #Evangellos Wiegers
 #April 17, 2020
 
-from .Support import Skill, SkillSection, Award, AwardSection, Education, \
+from Support import Skill, SkillSection, Award, AwardSection, Education, \
     Experience, Reference, Other, scrape, build
 
 ########################################################################################################################
@@ -70,11 +70,11 @@ skill_section.add_interpersonal(team_skill)
     # skill_sections = [python_skill, java_skill, c_skill, microsoft_skill]
 
 # Adding the info for the Experience section
-colliers_work = Experience("Business Analyst Intern", 2019, 2019, "Colliers International", 7,
-                           "Regina and Saskatoon, SK", "Organized and streamlined property data pertinent to "
+colliers_work = Experience("Business Analyst Intern", 2019, 2019, "Colliers International",
+                           "Regina and Saskatoon, SK", 7, "Organized and streamlined property data pertinent to "
                             "the company’s nationwide database")
-holdings_work = Experience("Business Analyst Intern", 2017, 2017, "Kouros Holdings Ltd", 6,
-                           "Regina, SK", "Created spreadsheets to report and assess current financial balances "
+holdings_work = Experience("Business Analyst Intern", 2017, 2017, "Kouros Holdings Ltd",
+                           "Regina, SK", 6, "Created spreadsheets to report and assess current financial balances "
                             "and forecast revenues and expenditures")
 experience_list = [colliers_work, holdings_work]
 
@@ -122,7 +122,7 @@ number_hobbies = 0
 # Here ends the information
 ########################################################################################################################
 
-if __name__ == '__main___':
+if __name__ == '__main__':
     #entering the URL of the job posting or none elsewise
     # posting = input("Enter the name of the job posting: ")
     # myURL = input("Enter the URL of the job posting: ")

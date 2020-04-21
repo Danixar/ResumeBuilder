@@ -264,7 +264,9 @@ def build(posting_name, company, company_address, name, address, phone, email, g
 
     #c reating PDF document
     doc = SimpleDocTemplate(file_name, pagesize=LETTER, bottomMargin=66.0,
-                            topMargin=66.0, leftMargin=66.0, rightMargin=66.0)
+                            topMargin=66.0, leftMargin=66.0, rightMargin=66.0, title="Evan Wiegers Resume",
+                            subject="Evan Wiegers' Resume Builder Script", author="Evan Wiegers",
+                            keywords=["Resume", "Builder", "Evan", "Wiegers"])
     elements = []
 
     # creating paragraph styles

@@ -29,9 +29,9 @@ github_account = "github.com/Danixar"
 
 # Adding the info for the Education section
 second_degree = Education("Computer Science", 2019, 2021, "University of Saskatchewan",
-                  "Saskatoon, SK", 10, False, "93% average", "B.Sc. Four Year")
+                  "Saskatoon, SK", 10, False, "93% Average", "B.Sc. Four Year")
 first_degree = Education("Chemical Engineering", 2014, 2018, "University of Saskatchewan",
-                  "Saskatoon, SK", 9, True, "90% average", "B.E. with Great Distinction")
+                  "Saskatoon, SK", 9, True, "90% Average", "B.E. with Great Distinction")
 education_list = [second_degree, first_degree]
 
 # Adding the info for the Skill Section
@@ -90,7 +90,7 @@ award3 = Award("Golden Key International Honour Society", 2016)
 award2 = Award("R.L Eager Book Prize in Physical Chemistry", "2015-2016")
 award1 = Award("Teruo Natori Scholarship Fund", 2016)
 
-award_section = [award10, award1, award2, award3, award4, award5, award6, award7, award8, award9]
+award_section = [award10, award9, award8, award7, award6, award5, award4, award3, award2, award1]
 
 # Adding the info for the References section
 references = "Available upon request"
@@ -115,7 +115,7 @@ number_educations = 2
 number_skills = [1, 4, 3, 0] # list if using SkillSection class i.e. 1 Language skill, 4 technical skills, etc
 number_exp = 2
 number_ref = 2
-number_award = 8
+number_award = 10
 number_vol = 2
 number_hobbies = 0
 
@@ -124,20 +124,36 @@ number_hobbies = 0
 
 if __name__ == '__main__':
     #entering the URL of the job posting or none elsewise
-    # posting = input("Enter the name of the job posting: ")
-    # myURL = input("Enter the URL of the job posting: ")
-    # if myURL.lower().strip() == "none":
-    #     keywords = None
-    # else:
-    #     keywords = scrape(myURL)
+    posting = input("Enter the name of the job posting (or none): ")
+    cover = False
+    if posting.lower().strip() == "none":
+        keywords = None
+        company = None
+        company_address = None
+    else:
+        myURL = input("Enter the URL of the job posting : ")
+        keywords = scrape(myURL)
+        cover = input("Would you like a cover letter as well (y/n): ")
+        if cover.lower().strip()[0] == "y":
+            company = input("Enter the company name: ")
+            company_address = input("Enter the company address:")
+            cover = True
+        else:
+            company = False
+            company_address = False
+            cover = False
 
-    posting = "bigtest"
-    keywords = ["python", "git", "communication", "kill", "me"]
+    # for testing
+    # posting = "bigtest"
+    # keywords = ["python", "git", "communication", "kill", "me"]
+    # cover = True
+    # company = "Reviga"
+    # company_address = "Silicon Valley, CA"
 
     # see builder.py to better understand this function
     # this function organizes and builds your resume info based on the scraped keywords
-    build(posting, name, address, phone, email, github_account, keywords, education_list, number_educations, skill_section,
-          number_skills, experience_list, number_exp, references, number_ref, award_section, number_award,
-          volunteering, number_vol, hobbies, number_hobbies)
+    build(posting, company, company_address, name, address, phone, email, github_account, keywords, education_list,
+          number_educations, skill_section, number_skills, experience_list, number_exp, references, number_ref,
+          award_section, number_award, volunteering, number_vol, hobbies, number_hobbies, cover)
 
 ########################################################################################################################

@@ -353,7 +353,7 @@ def build(posting_name, company, company_address, name, address, phone, email, g
 
         elements.append(Paragraph("I greatly appreciate your consideration.", cover_style))
         elements.append((Paragraph("", whitespace_style)))
-        elements.append((Paragraph("", whitespace_style)))
+        #elements.append((Paragraph("", whitespace_style)))
         elements.append(Paragraph("Evan Wiegers", cover_style))
 
         #now on to the resume

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86c4e41f-e5dd-4f25-91fc-5c4cd018898b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resumes/bigtest.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Resumes/bigtest.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Support/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Support/Builder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,20 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Support/Qualifications.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1755">
-              <caret line="204" column="32" lean-forward="true" selection-start-line="204" selection-start-column="32" selection-end-line="204" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="129" column="23" lean-forward="true" selection-start-line="129" selection-start-column="23" selection-end-line="129" selection-end-column="23" />
+            <state relative-caret-position="135">
+              <caret line="127" column="17" lean-forward="true" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -35,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Support/Builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="261" column="13" lean-forward="true" selection-start-line="261" selection-start-column="13" selection-end-line="261" selection-end-column="13" />
+            <state relative-caret-position="195">
+              <caret line="257" column="43" lean-forward="true" selection-start-line="257" selection-start-column="43" selection-end-line="257" selection-end-column="43" />
               <folding>
                 <element signature="e#52#154#0" expanded="true" />
               </folding>
@@ -94,11 +83,6 @@
               <item name="ResumeBuilder" type="b2602c69:ProjectViewProjectNode" />
               <item name="ResumeBuilder" type="462c0819:PsiDirectoryNode" />
               <item name="Resumes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ResumeBuilder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ResumeBuilder" type="462c0819:PsiDirectoryNode" />
-              <item name="Support" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -258,7 +242,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585022292919</updated>
       <workItem from="1585022295612" duration="828000" />
-      <workItem from="1586663900490" duration="54249000" />
+      <workItem from="1586663900490" duration="55323000" />
     </task>
     <task id="LOCAL-00001" summary="added classes for various qualifications in the resume (skills, education, references, etc, etc)">
       <created>1586667135831</created>
@@ -271,7 +255,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55077000" />
+    <option name="totallyTimeSpent" value="56151000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="799" extended-state="0" />
@@ -313,7 +297,7 @@
     <SUITE FILE_PATH="coverage/ResumeBuilder$HelloWorld.coverage" NAME="HelloWorld Coverage Results" MODIFIED="1585023016801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ResumeBuilder$TestPDF.coverage" NAME="TestPDF Coverage Results" MODIFIED="1587444966345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Support" />
     <SUITE FILE_PATH="coverage/ResumeBuilder$HelloWorld__1_.coverage" NAME="HelloWorld (1) Coverage Results" MODIFIED="1587184849729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Support" />
-    <SUITE FILE_PATH="coverage/ResumeBuilder$Main.coverage" NAME="Main Coverage Results" MODIFIED="1587511113972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ResumeBuilder$Main.coverage" NAME="Main Coverage Results" MODIFIED="1587512437741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/http/client.py">
@@ -426,13 +410,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Support/Qualifications.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1755">
-          <caret line="204" column="32" lean-forward="true" selection-start-line="204" selection-start-column="32" selection-end-line="204" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -447,10 +424,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Support/Qualifications.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1755">
+          <caret line="204" column="32" lean-forward="true" selection-start-line="204" selection-start-column="32" selection-end-line="204" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Support/Builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="261" column="13" lean-forward="true" selection-start-line="261" selection-start-column="13" selection-end-line="261" selection-end-column="13" />
+        <state relative-caret-position="195">
+          <caret line="257" column="43" lean-forward="true" selection-start-line="257" selection-start-column="43" selection-end-line="257" selection-end-column="43" />
           <folding>
             <element signature="e#52#154#0" expanded="true" />
           </folding>
@@ -459,8 +443,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="129" column="23" lean-forward="true" selection-start-line="129" selection-start-column="23" selection-end-line="129" selection-end-column="23" />
+        <state relative-caret-position="135">
+          <caret line="127" column="17" lean-forward="true" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
         </state>
       </provider>
     </entry>

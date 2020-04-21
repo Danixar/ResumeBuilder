@@ -10,6 +10,7 @@ from reportlab.lib.pagesizes import LETTER
 from reportlab.platypus import HRFlowable
 from reportlab.lib.colors import gray, lightgrey, black
 from datetime import datetime
+from sys import platform
 import shutil
 
 def object_precedence(obj):
@@ -251,14 +252,17 @@ def build(posting_name, company, company_address, name, address, phone, email, g
     # creating filename
     file_name = posting_name + ".pdf"
     count = 0
-    my_file = Path("./Resumes/" + file_name)
+    resume_path = "./Resumes/"
+    if platform.lower() == "windows":
+        resume_path = '.\\Resumes\\'
+    my_file = Path(resume_path + file_name)
     check = False
     # getting a new file name in case of repeats
     while not check:
         if my_file.is_file():
             count += 1
             file_name = posting_name + "(" + str(count) + ").pdf"
-            my_file = Path("./Resumes/" + file_name)
+            my_file = Path(resume_path + file_name)
         else:
             check = True
 

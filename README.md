@@ -10,7 +10,7 @@ the function build in Builder.py in the Support package. This project makes use 
 
 To use this script do the following:
 
-1) Download this project from GitHub
+1) Download this project from GitHub and navigate towards the project folder
 
 2) On the command line run something like this :
 	i) docker build -t resumebuilder .

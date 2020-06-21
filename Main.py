@@ -127,8 +127,8 @@ if __name__ == '__main__':
     posting = input("Enter the name of the job posting (or none): ")
     cover = False
     if posting.lower().strip() == "none":
-        keywords = None
-        company = None
+        keywords = ["python", "java", "linux", "c", "microsoft"]
+        company = "Generic-Resume"
         company_address = None
     else:
         myURL = input("Enter the URL of the job posting : ")

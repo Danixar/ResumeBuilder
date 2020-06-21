@@ -252,7 +252,7 @@ def build(posting_name, company, company_address, name, address, phone, email, g
     # creating filename
     file_name = posting_name + ".pdf"
     count = 0
-    resume_path = "./Resumes/"
+    resume_path = "./resumes/"
     if platform.lower() == "windows":
         resume_path = '.\\Resumes\\'
     my_file = Path(resume_path + file_name)
@@ -486,6 +486,6 @@ def build(posting_name, company, company_address, name, address, phone, email, g
 
     # building PDF and moving it to appropriate directory
     doc.build(elements)
-    shutil.move(file_name, "./Resumes")
+    shutil.move(file_name, "./resumes")
 
     return

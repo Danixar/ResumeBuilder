@@ -13,10 +13,8 @@ To use this script do the following:
 1) Download this project from GitHub and navigate towards the project folder
 
 2) On the command line run something like this :
-	i) docker build -t resumebuilder .
-	ii) docker run --rm -it \
-		-v /Users/evanwiegers/Downloads:/home/resumes \
-		resumebuilder
+	i) "docker build -t resumebuilder ."
+	ii) "docker run --rm -it -v /Users/evanwiegers/Downloads:/home/resumes resumebuilder"
 
 3) Once prompted, enter the name of the posting or None if there isn't any.  If not none, additional prompts may, 
 depending on your responses, ask for the posting URL, company, and company address, and whether you want to produce a 

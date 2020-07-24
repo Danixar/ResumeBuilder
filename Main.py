@@ -126,20 +126,26 @@ if __name__ == '__main__':
     #entering the URL of the job posting or none elsewise
     posting = input("Enter the name of the job posting (or none): ")
     cover = company = company_address = False
-    if posting.lower().strip() == "none": keywords = []
-    else:
+    keywords = []
+    if posting.lower().strip() != "none"
         try:
             myURL = input("Enter the URL of the job posting : ")
             keywords = scrape(myURL)
         except Exception as err: 
-            print("Error in website scraping: {0}".format(err))
-        else: 
-            cover = input("Would you like a cover letter as well (y/n): ")
-            if cover.lower().strip()[0] == "y":
-                company = input("Enter the company name: ")
-                company_address = input("Enter the company address:")
-                cover = True
-                
+            print("Error in website scraping: {0}".format(err)) 
+
+    cover = input("Would you like a cover letter as well (y/n): ")
+    if cover.lower().strip()[0] == "y":
+        company = input("Enter the company name: ")
+        company_address = input("Enter the company address:")
+        cover = True
+    
+    try: 
+        build(posting, company, company_address, name, address, phone, email, github_account, keywords, education_list,
+          number_educations, skill_section, number_skills, experience_list, number_exp, references, number_ref,
+          award_section, number_award, volunteering, number_vol, hobbies, number_hobbies, cover)
+    except Exception as err: 
+        print("Error in builder.py: {0}".format(err))      
 
     # for testing
     # posting = "bigtest"
@@ -150,8 +156,8 @@ if __name__ == '__main__':
 
     # see builder.py to better understand this function
     # this function organizes and builds your resume info based on the scraped keywords
-    build(posting, company, company_address, name, address, phone, email, github_account, keywords, education_list,
-          number_educations, skill_section, number_skills, experience_list, number_exp, references, number_ref,
-          award_section, number_award, volunteering, number_vol, hobbies, number_hobbies, cover)
+    # build(posting, company, company_address, name, address, phone, email, github_account, keywords, education_list,
+    #       number_educations, skill_section, number_skills, experience_list, number_exp, references, number_ref,
+    #       award_section, number_award, volunteering, number_vol, hobbies, number_hobbies, cover)
 
 ########################################################################################################################

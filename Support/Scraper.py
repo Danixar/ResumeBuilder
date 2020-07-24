@@ -14,37 +14,47 @@ def scrape(myURL):
     :return: a list of string keywords scraped from the webpage of the url
     '''
 
-    #Opening connection to page of url
-    uClient = uReq(myURL)
-    #Opening html file from connected url
-    postingHtml = uClient.read()
-    #Closing connection to page
-    uClient.close()
+    try:
+        #Opening connection to page of url
+        uClient = uReq(myURL)
+        #Opening html file from connected url
+        postingHtml = uClient.read()
+        #Closing connection to page
+        uClient.close()
 
-    #Parsing the html
-    postingSoup = bsoup(postingHtml, "html.parser")
-    #Print(postingSoup.prettify())
+        #Parsing the html
+        postingSoup = bsoup(postingHtml, "html.parser")
+        # print(postingSoup.prettify())
 
-    #Getting string of all text of page
-    keywords = " ".join([t.text for t in postingSoup.find_all("p") if t])
+        #Getting string of all text of page
+        keywords = postingSoup.get_text()
 
-    #Removing useless characters and words froms string
-    rep = [",", "/", "-", ":", ".", "|"]
-    for i in rep:
-        keywords = keywords.replace(i, " ")
-    #Recreating list of keywords
-    keywords = [t for t in keywords.casefold().split(" ") if t]
-    blacklist = ["the", "at", "with", "and", "they", "their", "of", "in", "to", "that", "are", "on",
-                     "from", "can", "get", "our", "your", "or", "you", "have", "is", "for", "well", "while", "own", "them",
-                     "done", "will", "able", "others", "will", "a", "as", "we", "www", "com"]
-    keywords = [t for t in keywords if t not in blacklist]
-
-    #Returning list of keywords
-    return keywords
+        #Removing useless characters and words froms string
+        rep = [",", "/", "-", ":", ".", "|", "\n"]
+        for i in rep:
+            keywords = keywords.replace(i, " ")
+        #Recreating list of keywords
+        keywords = [t for t in keywords.casefold().split(" ") if t]
+        blacklist = ["the", "at", "with", "and", "they", "their", "of", "in", "to", "that", "are", "on",
+                        "from", "can", "get", "our", "your", "or", "you", "have", "is", "for", "well", "while", "own", "them",
+                        "done", "will", "able", "others", "will", "a", "as", "we", "www", "com"]
+        keywords = [t for t in keywords if t not in blacklist]
+    except IOError as err:
+        raise IOError("I/O Error: {0}".format(err))
+    except ValueError as err: 
+        raise ValueError("Value Error: {0}".format(err))
+    except:
+        raise Exception("Unexpected Error:", sys.exc_info()[0])
+    else:
+        #Returning list of keywords
+        return keywords
 
 
 #Main testing
 if __name__ == '__main__':
     #Getting url from user
     myURL = input("Enter the URL of the job posting: ")
-    print(scrape(myURL))
+    try:
+        print(scrape(myURL))
+    except Exception as err:
+        print(err)

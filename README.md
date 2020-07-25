@@ -4,6 +4,8 @@ Author: Evan Wiegers
 
 April 2020
 
+Note: This program's code is lackluster at best and needs to be updated to utilize more of a imperative programming paradigm
+
 This project is meant to create resume PDF's which are tailored for a specific job posting. To edit the 
 information in the resume, edit the variables in Main.py - to alter the structure or format of the resume itself alter 
 the function build in Builder.py in the Support package. This project makes use of Docker so be sure to have that downloaded.

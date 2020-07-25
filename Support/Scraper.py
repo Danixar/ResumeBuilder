@@ -6,6 +6,8 @@
 
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as bsoup
+import traceback
+import sys
 
 def scrape(myURL):
     '''
@@ -40,14 +42,14 @@ def scrape(myURL):
                         "done", "will", "able", "others", "will", "a", "as", "we", "www", "com"]
         keywords = [t for t in keywords if t not in blacklist]
     except IOError as err:
-        raise IOError("I/O Error: {0}".format(err))
+        print("I/O Error: {0}".format(err))
     except ValueError as err: 
-        raise ValueError("Value Error: {0}".format(err))
+        print("Value Error: {0}".format(err))
     except:
-        raise Exception("Unexpected Error:", sys.exc_info()[0])
-    else:
+        print("Unexpected Error:", sys.exc_info()[0])
+    finally:
         #Returning list of keywords
-        return keywords
+        return keywords if not None else []
 
 
 #Main testing

@@ -159,20 +159,24 @@ number_hobbies = 0
 if __name__ == '__main__':
     #entering the URL of the job posting or none elsewise
     posting = input("Enter the name of the job posting (or none): ")
-    cover = company = company_address = False
+    company = company_address = ""
     keywords = []
-    if posting.lower().strip() != "none"
+    if posting.lower().strip() != "none":
         try:
             myURL = input("Enter the URL of the job posting : ")
             keywords = scrape(myURL)
         except Exception as err: 
             print("Error in website scraping: {0}".format(err)) 
+    else:
+        posting = name.replace(" ", "-") + "-Resume"
 
     cover = input("Would you like a cover letter as well (y/n): ")
     if cover.lower().strip()[0] == "y":
         company = input("Enter the company name: ")
         company_address = input("Enter the company address:")
         cover = True
+    else:
+        cover = False
     
     try: 
         build(posting, company, company_address, name, address, phone, email, github_account, keywords, education_list,

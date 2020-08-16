@@ -35,34 +35,63 @@ first_degree = Education("Chemical Engineering", 2014, 2018, "University of Sask
 education_list = [second_degree, first_degree]
 
 # Adding the info for the Skill Section
-language_skills = Skill(["python", "java", "c", "bash", "unix", "microsoft"], "Python, Java, C, Bash & Unix, "
-                        "Visual Basic for Applications, Microsoft Office Suite", 10)
+language_skills = Skill(["python", "typescript", "javascript", "node" "java", "c", "bash", "zsh", "unix", "linux", "microsoft"], 
+                        "Javascript/Typescript, Node, Python, Java, Bash/Zsh, Linux, C, Microsoft Office Suite", 10)
+
 python_skill = Skill(["python", "recursion", "recursive"],
                      "Utilized Python, recursive programming principles, and "
-                     "computational logic to program a logic proof solver", 9)
-java_skill = Skill(["java", "uml", "mvc", "gui"], "Designed programs for a hospital system and a space invaders game "
+                     "computational logic to program a logic proof solver", 
+                     8)
+java_skill = Skill(["java", "uml", "mvc", "gui"], 
+                    "Designed programs for a hospital system and a space invaders game "
                     "using Java, UML diagrams, graphical user interfaces, and the "
-                    "model-view-controller design pattern", 10)
-c_skill = Skill(["C", "source", "shell", "makefile", "git", "bash", "linux"], "Applied C, source code modularization, "
+                    "model-view-controller design pattern", 
+                    8)
+c_skill = Skill(["C", "source", "shell", "makefile", "git", "bash", "linux"], 
+                    "Applied C, source code modularization, "
                     "makefile, shell scripts, and git version control in Bash to create a program to produce chaos game "
-                    "representations of genomic sequences", 7)
-microsoft_skill = Skill(["Microsoft", "Excel", "VBA", "Office"], "Employed Microsoft Excel and VBA to determine the "
+                    "representations of genomic sequences", 
+                    5)
+microsoft_skill = Skill(["Microsoft", "Excel", "VBA", "Office"], 
+                    "Employed Microsoft Excel and VBA to determine the "
                     "optimal operations of a hydrogen production plant for hydrotreating in "
-                    "the Western Canadian oil sands", 8)
+                    "the Western Canadian oil sands", 
+                    8)
+aws_node_skill = Skill(["Node", "Javascript", "Typescript", "JS", "TS", "AWS", "CDK", "Cloudformation", "Stack"], 
+                    "Created AWS CloudFormation Stacks in Node with Typescript to securely store "
+                    "software backups and provide the proper permissions to access them",
+                    10)
+aws_docker_skill = Skill(["AWS", "Amazon", "Docker", "ecs", "Fargate", "step", "lambda", "function", "Node"], 
+                    "Applied AWS, Docker, and Node to deploy recurring ECS tasks and Step Functions to " 
+                    "automate software checks for secrets and vulnerabilities",
+                    10)
+github_node_skill = Skill(["Github", "Graphql", "API", "query", "Node", "octokit", "Postman", "Request", "webdev"], 
+                    "Extensively queried the GitHub API with Curl, GraphQl, Postman, and Node to collect data on " 
+                    "company repos, audits, records, and protections",
+                    9)
+
 written_skill = Skill(["written", "communication"], "Improved written communication by creating project "
                 "reports, memoranda, and charters to easily convey results and recommendations to "
-                "engineering supervisors in industry", 9)
+                "engineering supervisors in industry", 
+                9)
 verbal_skill = Skill(["verbal", "communication", "powerpoint"], "Developed verbal communication and "
-                "received input while delivering PowerPoint presentations on the hydrotreating of oil sands bitumen", 9)
+                "received input while delivering PowerPoint presentations on the hydrotreating of oil sands bitumen", 
+                9)
 team_skill = Skill(["team", "group", "project"], "Promoted teambuilding and collaboration as project manager of "
-                "both software development (Comp. Sci.) and project design teams (Chem. Eng.)", 8)
+                "both software development (Comp. Sci.) and project design teams (Chem. Eng.)", 
+                8)
 
 skill_section = SkillSection()
 skill_section.add_language(language_skills)
+
 skill_section.add_technical(python_skill)
 skill_section.add_technical(java_skill)
 skill_section.add_technical(c_skill)
 skill_section.add_technical(microsoft_skill)
+skill_section.add_technical(aws_node_skill)
+skill_section.add_technical(aws_docker_skill)
+skill_section.add_technical(github_node_skill)
+
 skill_section.add_interpersonal(written_skill)
 skill_section.add_interpersonal(verbal_skill)
 skill_section.add_interpersonal(team_skill)
@@ -70,13 +99,18 @@ skill_section.add_interpersonal(team_skill)
     # skill_sections = [python_skill, java_skill, c_skill, microsoft_skill]
 
 # Adding the info for the Experience section
+fcc_work = Experience("DevOps Intern", 2020, 2020, "Farm Credit Canada",
+                        "Remote - Regina, SK", 10, 
+                        "Created and deployed programs within the AWS environment to organize company data and automate frequent tasks")
 colliers_work = Experience("Business Analyst Intern", 2019, 2019, "Colliers International",
-                           "Regina and Saskatoon, SK", 7, "Organized and streamlined property data pertinent to "
+                           "Regina and Saskatoon, SK", 7, 
+                           "Organized and streamlined property data pertinent to "
                             "the company’s nationwide database")
 holdings_work = Experience("Business Analyst Intern", 2017, 2017, "Kouros Holdings Ltd",
-                           "Regina, SK", 6, "Created spreadsheets to report and assess current financial balances "
+                           "Regina, SK", 6, 
+                           "Created spreadsheets to report and assess current financial balances "
                             "and forecast revenues and expenditures")
-experience_list = [colliers_work, holdings_work]
+experience_list = [fcc_work, colliers_work]
 
 # Adding the info for the Awards sections
 award10 = Award("Society of Chemical Industry, Canadian Section Merit Award", 2018)

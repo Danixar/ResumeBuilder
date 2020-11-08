@@ -4,7 +4,7 @@ Author: Evan Wiegers
 
 April 2020
 
-**November 2020 Note:** This program's code is so-so at best and needs to be updated to utilize more of an declarative programming paradigm. In hindsight, I really should have done this in Node.I will have to go back and update this when I have the time. 
+**November 2020 Note:** This program's code is so-so at best and needs to be updated to utilize more of an declarative programming paradigm. In hindsight, I really should have done this in Node. I will have to go back and update this when I have the time. 
 
 This project is meant to create resume PDF's which are tailored for a specific job posting. To edit the 
 information in the resume, edit the variables in Main.py - to alter the structure or format of the resume itself alter 
